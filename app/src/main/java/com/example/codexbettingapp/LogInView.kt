@@ -50,19 +50,19 @@ fun LogInView() {
 
                 CodexTextField()
 
-                UnderlinedButton("¿Olvidaste tu contraseña?")
+                UnderlinedButton("¿Olvidaste tu contraseña?", color = Color.White)
             }
 
-            ContinueButton()
+            ContinueButton("Iniciar sesión")
 
             Text("O ingresa con", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(top = 15.dp))
 
-            GoogleButton()
+            GoogleButton("Iniciar sesión con Google")
 
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 15.dp)){
                 Text("¿Aún no tienes cuenta?", color = Color.White,  fontSize = 20.sp)
 
-                UnderlinedButton("Registrate")
+                UnderlinedButton("Registrate", color = Color.White)
             }
         }
     }
@@ -82,7 +82,7 @@ fun CodexTextField() {
 }
 
 @Composable
-fun UnderlinedButton(text: String) {
+fun UnderlinedButton(text: String, color: Color) {
     Button(
         colors = ButtonDefaults.buttonColors(backgroundColor = CodexBlack),
         onClick = {
@@ -90,14 +90,14 @@ fun UnderlinedButton(text: String) {
         }) {
         Text(
             text,
-            color = Color.White,
+            color = color,
             style = TextStyle(textDecoration = TextDecoration.Underline)
         )
     }
 }
 
 @Composable
-fun ContinueButton() {
+fun ContinueButton(text: String) {
     Button(
         modifier = Modifier
             .padding(top = 20.dp)
@@ -108,12 +108,12 @@ fun ContinueButton() {
         onClick = {
 
         }) {
-        Text("Iniciar sesión", color = Color.White, fontSize = 20.sp)
+        Text(text, color = Color.White, fontSize = 20.sp)
     }
 }
 
 @Composable
-fun GoogleButton() {
+fun GoogleButton(text: String) {
     Button(
         modifier = Modifier
             .padding(top = 20.dp)
@@ -125,7 +125,7 @@ fun GoogleButton() {
         }) {
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Iniciar sesión con Google", color = Color.Black, fontSize = 20.sp)
+            Text(text, color = Color.Black, fontSize = 20.sp)
 
             GoogleIcon()
         }
