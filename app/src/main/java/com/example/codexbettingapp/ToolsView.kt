@@ -1,6 +1,7 @@
 package com.example.codexbettingapp
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -33,14 +34,30 @@ fun ToolsView() {
         ) {
             CodexNavigationBar()
 
-            Column(horizontalAlignment = Alignment.Start) {
-                Text("Herramientas", color = Color.White,  fontSize = 28.sp, modifier = Modifier.padding(horizontal = 15.dp))
+            Column(
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                Text(
+                    "Herramientas",
+                    color = Color.White,
+                    fontSize = 28.sp,
+                    modifier = Modifier
+                        .padding(horizontal = 15.dp)
+                        .padding(bottom = 20.dp)
+                )
 
-                InformativeCardView(title = "Calculadora", description = "Realiza los procedimientos matématicos con ayuda de la calculadora") {
+                InformativeCardView(
+                    title = "Calculadora",
+                    description = "Realiza los procedimientos matématicos con ayuda de la calculadora",
+                ) {
 
                 }
 
-                InformativeCardView(title = "Verificador de apuesta", description = "Verifica que tu apuesta no tenga nungún error") {
+                InformativeCardView(
+                    title = "Verificador de apuesta",
+                    description = "Verifica que tu apuesta no tenga nungún error"
+                ) {
 
                 }
             }

@@ -81,7 +81,6 @@ fun InformativeCardView(title: String, description: String, action: () -> Unit) 
     }) {
         Column(
             Modifier
-                .padding(15.dp)
                 .clip(RoundedCornerShape(20.dp))
             ,
             verticalArrangement = Arrangement.Center,
