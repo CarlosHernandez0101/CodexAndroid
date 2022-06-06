@@ -54,6 +54,7 @@ fun RegisterView() {
             }
 
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(20.dp)) {
+
                 Text("Aceptar", color = Color.White,  fontSize = 20.sp)
 
                 UnderlinedButton(text = "Política de privacidad y T&C", color = CodexGolden)

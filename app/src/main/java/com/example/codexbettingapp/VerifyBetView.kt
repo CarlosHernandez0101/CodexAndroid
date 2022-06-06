@@ -39,7 +39,7 @@ fun VerifyBetView() {
 
             VerifyBetRequirement(text = "El resultado a favor y en contra es el mismo en ambas casas de apuestas ", isDone = false)
 
-            VerifyBetRequirement(text = "El resultado a favor y en contra es el mismo en ambas casas de apuestas", isDone = false)
+            VerifyBetRequirement(text = "El resultado a favor y en contra es el mismo en ambas casas de apuestas", isDone = true)
 
             VerifyBetRequirement(text = "El resultado a favor y en contra es el mismo en ambas casas de apuestas", isDone = false)
 
@@ -49,7 +49,7 @@ fun VerifyBetView() {
 
 @Composable
 fun VerifyBetRequirement(text: String, isDone: Boolean) {
-    val checkedState = remember { mutableStateOf(true) }
+    val checkedState = remember { mutableStateOf(isDone) }
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,

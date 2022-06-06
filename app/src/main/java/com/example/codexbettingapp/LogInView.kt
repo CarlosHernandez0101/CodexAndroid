@@ -75,6 +75,7 @@ fun CodexTextField() {
         colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
         modifier = Modifier
             .background(Color.Black)
+            .height(40.dp)
             .padding(top = 15.dp),
         onValueChange = {
 
