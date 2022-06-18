@@ -8,19 +8,23 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.codexbettingapp.ui.theme.CodexBettingTheme
 import com.example.codexbettingapp.ui.theme.CodexBlack
-import com.example.codexbettingapp.ui.theme.CodexGolden
 import com.example.codexbettingapp.ui.theme.CodexGray
 
 @Composable
 fun RequestGameView() {
+    var layOdds = remember { mutableStateOf("") }
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -61,7 +65,7 @@ fun RequestGameView() {
                 .padding(top = 20.dp)
                 .padding(start = 15.dp)
             ) {
-                MultiSelectorOption()
+                //MultiSelectorOption(true)
 
                 Text("Cualquier evento", color = Color.White,  fontSize = 20.sp, modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -72,7 +76,7 @@ fun RequestGameView() {
                 .padding(top = 20.dp)
                 .padding(start = 15.dp)
             ) {
-                MultiSelectorOption()
+                //MultiSelectorOption(false)
 
                 Text("Partido", color = Color.White,  fontSize = 20.sp, modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -83,7 +87,7 @@ fun RequestGameView() {
                 .padding(top = 20.dp)
                 .padding(start = 15.dp)
             ) {
-                MultiSelectorOption()
+                //MultiSelectorOption(false)
 
                 Text("Liga/Competición", color = Color.White,  fontSize = 20.sp, modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -91,7 +95,7 @@ fun RequestGameView() {
             }
 
             Column(modifier = Modifier.padding(start = 15.dp)) {
-                CodexTextField()
+                CodexTextField("Liga")
             }
 
             Divider(
@@ -133,9 +137,13 @@ fun RequestGameView() {
                     .padding(horizontal = 15.dp)
             ) {
 
-                CodexCalculatorTextField()
+                CodexCalculatorTextField(layOdds, KeyboardType.Number, {
 
-                CodexCalculatorTextField()
+                })
+
+                CodexCalculatorTextField(layOdds, KeyboardType.Number, {
+
+                })
 
             }
 
@@ -193,7 +201,7 @@ fun RequestGameView() {
             Column(horizontalAlignment = Alignment.Start, modifier = Modifier.padding(start = 15.dp)) {
                 Text("Casa de apuestas", color = Color.White,  fontSize = 20.sp)
 
-                CodexTextField()
+                CodexTextField("Casa")
 
             }
 
@@ -203,7 +211,9 @@ fun RequestGameView() {
                     .padding(top = 20.dp)
                     .fillMaxWidth()
             ) {
-                ContinueButton(text = "Solicitar partido")
+                ContinueButton(text = "Solicitar partido", onClick = {
+
+                })
             }
             
         }

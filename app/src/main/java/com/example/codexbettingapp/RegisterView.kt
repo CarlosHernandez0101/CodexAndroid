@@ -42,15 +42,15 @@ fun RegisterView() {
             Column(horizontalAlignment = Alignment.Start) {
                 Text("Correo eléctronico", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(top = 20.dp))
 
-                CodexTextField()
+                CodexTextField("Correo")
 
                 Text("Contraseña", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(top = 20.dp))
 
-                CodexTextField()
+                CodexTextField("Contraseña")
 
                 Text("Confirmar contraseña", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(top = 20.dp))
 
-                CodexTextField()
+                CodexTextField("Confirmar")
             }
 
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(20.dp)) {
@@ -60,7 +60,9 @@ fun RegisterView() {
                 UnderlinedButton(text = "Política de privacidad y T&C", color = CodexGolden)
             }
             
-            ContinueButton(text = "Crear cuenta")
+            ContinueButton(text = "Crear cuenta", onClick = {
+
+            })
 
             Text("O resgitrate con:", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(20.dp))
             

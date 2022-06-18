@@ -44,9 +44,11 @@ fun ResetPasswordView() {
                 )
             }
 
-            CodexTextField()
+            CodexTextField("Resetear")
             
-            ContinueButton(text = "Enviar")
+            ContinueButton(text = "Enviar", onClick = {
+
+            })
         }
     }
 }

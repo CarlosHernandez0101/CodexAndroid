@@ -42,18 +42,20 @@ fun LogInView() {
 
             Text("Correo eléctronico", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(top = 40.dp))
 
-            CodexTextField()
+            CodexTextField("Correo")
 
             Text("Contraseña", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(top = 15.dp))
 
             Column(horizontalAlignment = Alignment.End) {
 
-                CodexTextField()
+                CodexTextField("Contraseña")
 
                 UnderlinedButton("¿Olvidaste tu contraseña?", color = Color.White)
             }
 
-            ContinueButton("Iniciar sesión")
+            ContinueButton("Iniciar sesión", onClick = {
+
+            })
 
             Text("O ingresa con", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(top = 15.dp))
 
@@ -69,13 +71,13 @@ fun LogInView() {
 }
 
 @Composable
-fun CodexTextField() {
+fun CodexTextField(value: String) {
     TextField(
-        value = "",
+        value = value,
         colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
         modifier = Modifier
             .background(Color.Black)
-            .height(40.dp)
+            .height(70.dp)
             .padding(top = 15.dp),
         onValueChange = {
 
@@ -98,7 +100,7 @@ fun UnderlinedButton(text: String, color: Color) {
 }
 
 @Composable
-fun ContinueButton(text: String) {
+fun ContinueButton(text: String, onClick: () -> Unit) {
     Button(
         modifier = Modifier
             .padding(top = 20.dp)
@@ -107,7 +109,7 @@ fun ContinueButton(text: String) {
             .width(200.dp),
         colors = ButtonDefaults.buttonColors(backgroundColor = CodexGolden),
         onClick = {
-
+            onClick()
         }) {
         Text(text, color = Color.White, fontSize = 20.sp)
     }
