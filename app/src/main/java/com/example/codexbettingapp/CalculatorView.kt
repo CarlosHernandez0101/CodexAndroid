@@ -178,7 +178,7 @@ fun CalculatorView() {
                                 .padding(bottom = 20.dp)
                         ) {
 
-                            CodexCalculatorTextField(backOdds, KeyboardType.Number, {
+                            GenericCodexTextField(backOdds, KeyboardType.Number, {
                                 calculate(
                                     freeBetMode = freeBetSelected.value,
                                     backStake = backStake.value,
@@ -201,7 +201,7 @@ fun CalculatorView() {
                             })
 
 
-                            CodexCalculatorTextField(backCommission, KeyboardType.Number, {
+                            GenericCodexTextField(backCommission, KeyboardType.Number, {
                                 calculate(
                                     freeBetMode = freeBetSelected.value,
                                     backStake = backStake.value,
@@ -263,7 +263,7 @@ fun CalculatorView() {
                                 .padding(bottom = 20.dp)
                         ) {
 
-                            CodexCalculatorTextField(layOdds, KeyboardType.Number, {
+                            GenericCodexTextField(layOdds, KeyboardType.Number, {
                                 calculate(
                                     freeBetMode = freeBetSelected.value,
                                     backStake = backStake.value,
@@ -286,7 +286,7 @@ fun CalculatorView() {
                             })
 
 
-                            CodexCalculatorTextField(layComission, KeyboardType.Number, {
+                            GenericCodexTextField(layComission, KeyboardType.Number, {
                                 calculate(
                                     freeBetMode = freeBetSelected.value,
                                     backStake = backStake.value,
@@ -485,7 +485,7 @@ fun CodexCalculatorBackStakeTextField(text: MutableState<String>, onChangeAction
 }
 
 @Composable
-fun CodexCalculatorTextField(text: MutableState<String>, keyboardType: KeyboardType, onChangeAction: () -> Unit) {
+fun GenericCodexTextField(text: MutableState<String>, keyboardType: KeyboardType, onChangeAction: () -> Unit) {
     TextField(
         value = text.value,
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),

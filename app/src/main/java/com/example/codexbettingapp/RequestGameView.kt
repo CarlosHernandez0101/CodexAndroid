@@ -23,7 +23,14 @@ import com.example.codexbettingapp.ui.theme.CodexGray
 
 @Composable
 fun RequestGameView() {
-    var layOdds = remember { mutableStateOf("") }
+    var gameText = remember { mutableStateOf("") }
+    var minOdds = remember { mutableStateOf("") }
+    var maxOdds = remember { mutableStateOf("") }
+    var sporbook = remember { mutableStateOf("") }
+    var anyGameSelected = remember { mutableStateOf(true) }
+    var matchSelected = remember { mutableStateOf(false) }
+    var leagueSelected = remember { mutableStateOf(false) }
+
 
     Surface(
         modifier = Modifier
@@ -65,7 +72,11 @@ fun RequestGameView() {
                 .padding(top = 20.dp)
                 .padding(start = 15.dp)
             ) {
-                //MultiSelectorOption(true)
+                MultiSelectorOption(selected = anyGameSelected) {
+                    anyGameSelected.value = true
+                    matchSelected.value = false
+                    leagueSelected.value = false
+                }
 
                 Text("Cualquier evento", color = Color.White,  fontSize = 20.sp, modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -76,7 +87,12 @@ fun RequestGameView() {
                 .padding(top = 20.dp)
                 .padding(start = 15.dp)
             ) {
-                //MultiSelectorOption(false)
+                MultiSelectorOption(selected = matchSelected) {
+                    anyGameSelected.value = false
+                    matchSelected.value = true
+                    leagueSelected.value = false
+                }
+
 
                 Text("Partido", color = Color.White,  fontSize = 20.sp, modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -87,7 +103,12 @@ fun RequestGameView() {
                 .padding(top = 20.dp)
                 .padding(start = 15.dp)
             ) {
-                //MultiSelectorOption(false)
+                MultiSelectorOption(selected = leagueSelected) {
+                    anyGameSelected.value = false
+                    matchSelected.value = false
+                    leagueSelected.value = true
+                }
+
 
                 Text("Liga/Competición", color = Color.White,  fontSize = 20.sp, modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -95,7 +116,11 @@ fun RequestGameView() {
             }
 
             Column(modifier = Modifier.padding(start = 15.dp)) {
-                CodexTextField("Liga")
+                if (!anyGameSelected.value) {
+                    GenericCodexTextField(gameText, KeyboardType.Text, {
+
+                    })
+                }
             }
 
             Divider(
@@ -137,11 +162,11 @@ fun RequestGameView() {
                     .padding(horizontal = 15.dp)
             ) {
 
-                CodexCalculatorTextField(layOdds, KeyboardType.Number, {
+                GenericCodexTextField(minOdds, KeyboardType.Number, {
 
                 })
 
-                CodexCalculatorTextField(layOdds, KeyboardType.Number, {
+                GenericCodexTextField(maxOdds, KeyboardType.Number, {
 
                 })
 
@@ -198,17 +223,23 @@ fun RequestGameView() {
                 color = CodexGray
             )
 
-            Column(horizontalAlignment = Alignment.Start, modifier = Modifier.padding(start = 15.dp)) {
+            Column(
+                modifier = Modifier
+                    .padding(start = 15.dp)
+                    .fillMaxWidth()
+            ) {
                 Text("Casa de apuestas", color = Color.White,  fontSize = 20.sp)
 
-                CodexTextField("Casa")
+                GenericCodexTextField(sporbook, KeyboardType.Text, {
 
+                })
             }
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding(top = 20.dp)
+                    .padding(bottom = 240.dp)
                     .fillMaxWidth()
             ) {
                 ContinueButton(text = "Solicitar partido", onClick = {

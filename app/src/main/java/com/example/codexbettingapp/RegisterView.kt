@@ -68,7 +68,7 @@ fun RegisterView() {
             
             GoogleButton(text = "Registrarse con Google")
 
-            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(20.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 15.dp).padding(bottom = 35.dp)) {
                 Text("¿Ya tienes cuenta?", color = Color.White,  fontSize = 20.sp)
 
                 UnderlinedButton(text = "Iniciar sesión", color = Color.White)

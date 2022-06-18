@@ -61,7 +61,12 @@ fun LogInView() {
 
             GoogleButton("Iniciar sesión con Google")
 
-            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 15.dp)){
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .padding(top = 15.dp)
+                    .padding(bottom = 35.dp)
+            ){
                 Text("¿Aún no tienes cuenta?", color = Color.White,  fontSize = 20.sp)
 
                 UnderlinedButton("Registrate", color = Color.White)

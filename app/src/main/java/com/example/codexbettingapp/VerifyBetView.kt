@@ -24,7 +24,7 @@ import com.example.codexbettingapp.ui.theme.CodexGray
 @Composable
 fun VerifyBetView() {
 
-    var checkedValue by remember { mutableStateOf(value = false)}
+    var checkedValue = remember { mutableStateOf(false) }
 
     val list = listOf(
         "El partido elegido está disponible para la promoción",
@@ -72,6 +72,9 @@ fun VerifyBetView() {
                                         requirement.copy(isSelected = !requirement.isSelected)
                                     } else requirement
                                 }
+                                checkedValue.value = requirements.all {
+                                    it.isSelected
+                                }
                             }
                             .fillMaxWidth()
                             .background(CodexBlack)
@@ -112,11 +115,8 @@ fun VerifyBetView() {
                 }
             }
 
-            //TODO: FIX DISSMISS
-            SucessDialog(showDialog = requirements.all {
-                it.isSelected
-            }) {
-
+            SucessDialog(showDialog = checkedValue.value) {
+                checkedValue.value = false
             }
         }
     }
@@ -154,6 +154,12 @@ fun SucessDialog(
             backgroundColor = CodexGray,
             contentColor = Color.White
         )
+    }
+}
+
+fun checkRequirementes(checked: MutableState<Boolean>, list: List<RequirementItem>) {
+    checked.value = list.all {
+        it.isSelected
     }
 }
 
