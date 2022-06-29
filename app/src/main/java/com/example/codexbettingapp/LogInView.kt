@@ -5,9 +5,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,6 +31,12 @@ import com.example.codexbettingapp.ui.theme.CodexGolden
 
 @Composable
 fun LogInView() {
+
+    var emailText = remember { mutableStateOf("") }
+    var passwordText = remember { mutableStateOf("") }
+    var emailError = remember { mutableStateOf("") }
+    var passwordError = remember { mutableStateOf("") }
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -33,7 +45,8 @@ fun LogInView() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .background(CodexBlack),
+                .background(CodexBlack)
+                .padding(horizontal = 30.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             CodexLogo()
@@ -42,18 +55,43 @@ fun LogInView() {
 
             Text("Correo eléctronico", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(top = 40.dp))
 
-            CodexTextField("Correo")
+            CodexLargeTextField(text = emailText, keyboardType = KeyboardType.Text) {
+
+            }
+
+            if (!emailError.value.isEmpty()) {
+                TextError(text = emailError.value)
+            }
 
             Text("Contraseña", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(top = 15.dp))
 
             Column(horizontalAlignment = Alignment.End) {
 
-                CodexTextField("Contraseña")
+                CodexLargeTextField(text = passwordText, keyboardType = KeyboardType.Text) {
+
+                }
 
                 UnderlinedButton("¿Olvidaste tu contraseña?", color = Color.White)
+
+                if (!passwordError.value.isEmpty()) {
+                    TextError(text = passwordError.value)
+                }
             }
 
             ContinueButton("Iniciar sesión", onClick = {
+
+                if (!isValidEmail(emailText.value)) {
+                    emailError.value = "Ingrese un correo válido"
+                }
+
+                if (!isValidPassword(passwordText.value)) {
+                    passwordError.value = "Debe contener al menos 6 caracteres"
+                }
+
+                if (isValidEmail(emailText.value) && isValidPassword(passwordText.value)) {
+                    emailError.value = ""
+                    passwordError.value = ""
+                }
 
             })
 
@@ -147,6 +185,35 @@ fun GoogleIcon() {
         contentDescription = "Google Icon",
         modifier = Modifier.size(50.dp)
     )
+}
+
+@Composable
+fun CodexPasswordLargeTextField(text: MutableState<String>, keyboardType: KeyboardType, onChangeAction: () -> Unit) {
+    TextField(
+        value = text.value,
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+        colors = TextFieldDefaults.textFieldColors(
+            textColor = Color.Black,
+            backgroundColor = Color.White
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(70.dp)
+            .padding(top = 15.dp),
+        onValueChange = {
+            text.value = it
+            onChangeAction()
+        },
+        trailingIcon = {
+            IconButton(onClick = { }) {
+
+            }
+        }
+    )
+}
+
+fun isValidPassword(password: String): Boolean {
+    return password.length >= 6
 }
 
 @Preview(showBackground = true)

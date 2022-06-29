@@ -135,7 +135,7 @@ fun CalculatorView() {
 
                         Text("Importe de apuesta (Bookie)", color = Color.White,  fontSize = 20.sp, modifier = Modifier.padding(vertical = 10.dp))
 
-                        CodexCalculatorBackStakeTextField(backStake) {
+                        CodexLargeTextField(backStake, KeyboardType.Number) {
                             calculate(
                                 freeBetMode = freeBetSelected.value,
                                 backStake = backStake.value,
@@ -466,10 +466,10 @@ fun CalculatorView() {
 }
 
 @Composable
-fun CodexCalculatorBackStakeTextField(text: MutableState<String>, onChangeAction: () -> Unit) {
+fun CodexLargeTextField(text: MutableState<String>, keyboardType: KeyboardType, onChangeAction: () -> Unit) {
     TextField(
         value = text.value,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
         colors = TextFieldDefaults.textFieldColors(
             textColor = Color.Black,
             backgroundColor = Color.White

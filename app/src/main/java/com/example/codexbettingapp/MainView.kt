@@ -9,17 +9,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -74,6 +73,7 @@ fun CodexLogo() {
 
 @Composable
 fun InformativeCardView(title: String, description: String, action: () -> Unit) {
+
     Button(
         colors = ButtonDefaults.buttonColors(backgroundColor = CodexBlack),
         onClick = {
@@ -96,8 +96,34 @@ fun InformativeCardView(title: String, description: String, action: () -> Unit) 
                     Divider(modifier = Modifier.padding(top = 20.dp), color = CodexGolden)
 
                     Text(description, modifier = Modifier.padding(top = 20.dp), color = Color.White, fontSize = 13.sp)
+                    
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun LockedCardView() {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(top = 15.dp)) {
+        Icon(imageVector = Icons.Filled.Lock, contentDescription = "Locked Icon", tint = Color.White, modifier = Modifier
+            .clip(CircleShape)
+            .background(Color.Black)
+            .size(35.dp)
+        )
+
+        Text("Necesitas ser miembro de Codex Betting para acceder a esta funcionalidad", modifier = Modifier.padding(top = 20.dp), color = Color.White, fontSize = 13.sp)
+
+        Button(
+            colors = ButtonDefaults.buttonColors(backgroundColor = CodexGray),
+            onClick = {
+
+            }) {
+            Text(
+                "Comenzar ahora",
+                color = Color.White,
+                style = TextStyle(textDecoration = TextDecoration.Underline)
+            )
         }
     }
 }
